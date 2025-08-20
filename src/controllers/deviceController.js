@@ -1,9 +1,17 @@
 const Device = require('../models/Device');
+const Joi = require('joi');
+
+const deviceSchema = Joi.object({
+  name: Joi.string().required(),
+  type: Joi.string().required(),
+  status: Joi.string().valid('active', 'inactive').optional()
+});
 
 exports.createDevice = async (req, res, next) => {
   try {
-    const { name, type, status } = req.body;
-    const device = new Device({ name, type, status: status || 'inactive', owner: req.user._id });
+    const { error, value } = deviceSchema.validate(req.body);
+    if (error) return res.status(400).json({ success: false, message: error.details[0].message });
+    const device = new Device({ ...value, owner: req.user._id });
     await device.save();
     res.json({ success: true, device });
   } catch(err) { next(err); }
@@ -23,19 +31,20 @@ exports.getDeviceById = async (req, res, next) => {
     const device = await Device.findById(req.params.id);
     if(!device) return res.status(404).json({ success:false, message:'Device not found' });
     if(device.owner.toString() !== req.user._id.toString()) return res.status(403).json({ success:false, message:'Forbidden' });
-
     res.json({ success: true, device });
   } catch(err) { next(err); }
 };
 
 exports.updateDevice = async (req, res, next) => {
   try {
+    const { error, value } = deviceSchema.validate(req.body, { allowUnknown: true });
+    if (error) return res.status(400).json({ success: false, message: error.details[0].message });
+
     const device = await Device.findById(req.params.id);
     if(!device) return res.status(404).json({ success:false, message:'Device not found' });
     if(device.owner.toString() !== req.user._id.toString()) return res.status(403).json({ success:false, message:'Forbidden' });
 
-    const allowed = ['name','type','status'];
-    allowed.forEach(key => { if(req.body[key] !== undefined) device[key] = req.body[key]; });
+    Object.assign(device, value);
     await device.save();
     res.json({ success: true, device });
   } catch(err) { next(err); }

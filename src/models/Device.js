@@ -10,5 +10,7 @@ const deviceSchema = new mongoose.Schema({
 
 deviceSchema.index({ owner: 1 });
 deviceSchema.index({ last_active_at: 1 });
+deviceSchema.index({ owner: 1, status: 1 });
+deviceSchema.index({ owner: 1, type: 1 });
 
 module.exports = mongoose.model('Device', deviceSchema);

@@ -17,6 +17,7 @@ exports.createLog = async (req, res, next) => {
     if(device.owner.toString() !== req.user._id.toString()) return res.status(403).json({ success:false, message:'Forbidden' });
 
     const { event, value } = req.body;
+    if (!event) return res.status(400).json({ success:false, message:'Event is required' });
     const log = await new Log({ device: device._id, event, value }).save();
     res.json({ success:true, log });
   } catch(err) { next(err); }
@@ -24,7 +25,7 @@ exports.createLog = async (req, res, next) => {
 
 exports.getLogs = async (req, res, next) => {
   try {
-    const limit = parseInt(req.query.limit, 10) || 10;
+    const limit = parseInt(req.query.limit, 10) || 10; 
     const device = await Device.findById(req.params.id);
     if(!device) return res.status(404).json({ success:false, message:'Device not found' });
     if(device.owner.toString() !== req.user._id.toString()) return res.status(403).json({ success:false, message:'Forbidden' });
