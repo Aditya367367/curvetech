@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "author": {
+    "name": "Aditya chauhan",
+    "email": "suryachauhan367367@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/aditya-chauhan-1b1a95228/"
+  },
   "scripts": {
     "dev": "nodemon src/server.js",
     "start": "node src/server.js",
     "test": "jest --runInBand --detectOpenHandles"
   },
   "keywords": [],
-  "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {

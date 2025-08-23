@@ -1,0 +1,17 @@
+{
+  "exportType": "analytics",
+  "exportedAt": "2025-08-23T07:30:26.219Z",
+  "filters": {
+    "startDate": "2024-01-01T00:00:00.000Z",
+    "endDate": "2024-01-31T23:59:59.000Z"
+  },
+  "deviceStats": {
+    "totalDevices": 0,
+    "activeDevices": 0,
+    "inactiveDevices": 0
+  },
+  "usageStats": {
+    "totalLogs": 0,
+    "totalUnitsConsumed": 0
+  }
+}
