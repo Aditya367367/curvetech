@@ -1,0 +1,25 @@
+{
+  "exportType": "devices",
+  "totalCount": 2,
+  "exportedAt": "2025-08-23T06:22:25.901Z",
+  "data": [
+    {
+      "id": "68a95a348d1949bd5081b4a0",
+      "name": "SmartPlug-01",
+      "type": "plug",
+      "status": "inactive",
+      "lastActiveAt": null,
+      "createdAt": "2025-08-23T06:05:40.164Z",
+      "updatedAt": "2025-08-23T06:05:40.164Z"
+    },
+    {
+      "id": "68a95a758d1949bd5081b4a3",
+      "name": "SmartPlug-01",
+      "type": "plug",
+      "status": "active",
+      "lastActiveAt": "2025-08-23T06:13:47.507Z",
+      "createdAt": "2025-08-23T06:06:45.863Z",
+      "updatedAt": "2025-08-23T06:13:47.510Z"
+    }
+  ]
+}

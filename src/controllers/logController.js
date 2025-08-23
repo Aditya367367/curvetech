@@ -1,5 +1,6 @@
 const Log = require('../models/Log');
 const Device = require('../models/Device');
+const { invalidateDeviceComputed } = require('../middlewares/cache');
 
 function parseRange(r = '24h'){
   const m = r.match(/^(\d+)([smhd])$/);
@@ -19,6 +20,7 @@ exports.createLog = async (req, res, next) => {
     const { event, value } = req.body;
     if (!event) return res.status(400).json({ success:false, message:'Event is required' });
     const log = await new Log({ device: device._id, event, value }).save();
+    invalidateDeviceComputed(device._id.toString()).catch(() => {});
     res.json({ success:true, log });
   } catch(err) { next(err); }
 };

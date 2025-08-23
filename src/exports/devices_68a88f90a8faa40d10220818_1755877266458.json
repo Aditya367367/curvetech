@@ -1,0 +1,16 @@
+{
+  "exportType": "devices",
+  "totalCount": 1,
+  "exportedAt": "2025-08-22T15:41:06.458Z",
+  "data": [
+    {
+      "id": "68a88f91a8faa40d1022082b",
+      "name": "EnhancedDevice",
+      "type": "light",
+      "status": "active",
+      "lastActiveAt": null,
+      "createdAt": "2025-08-22T15:41:05.682Z",
+      "updatedAt": "2025-08-22T15:41:05.682Z"
+    }
+  ]
+}

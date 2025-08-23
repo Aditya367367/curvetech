@@ -15,7 +15,7 @@
 ### Local
 ```sh
 npm install
-cp .env.example .env # or edit .env
+cp .env
 npm run dev
 ```
 
@@ -109,7 +109,7 @@ Let me know if you want any file in full or a specific part explained!# CurvvTec
 ### Local
 ```sh
 npm install
-cp .env.example .env # or edit .env
+cp .env
 npm run dev
 ```
 
@@ -185,4 +185,4 @@ docker compose exec app npm test
 
 ---
 ## Postman Collection
-- See [api exports.postman_collection.json](./api%20exports.postman_collection.json) for ready-to-use API requests.
+- See [smart device api.postman_collection.json](./smart%20device%20api.postman_collection.json) for ready-to-use API requests.

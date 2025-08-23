@@ -5,8 +5,16 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true, lowercase: true },
   password: { type: String, required: true },
-  role: { type: String, enum: ['user','admin'], default: 'user' }
+  role: { type: String, enum: ['user','admin'], default: 'user' },
+  lastLoginAt: { type: Date, default: null },
+  isActive: { type: Boolean, default: true }
 }, { timestamps: true });
+
+// Indexes for better query performance
+// Note: email index is automatically created by unique: true
+userSchema.index({ role: 1 });
+userSchema.index({ isActive: 1 });
+userSchema.index({ createdAt: -1 });
 
 userSchema.pre('save', async function(next){
   if(!this.isModified('password')) return next();

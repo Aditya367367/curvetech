@@ -7,6 +7,9 @@ services:
     env_file: .env
     depends_on:
       - mongo
+      - redis
+    volumes:
+      - ./src/exports:/app/src/exports
 
   mongo:
     image: mongo:6
@@ -14,7 +17,13 @@ services:
     volumes:
       - mongo-data:/data/db
     ports:
-      - "27018:27017" 
+      - "27018:27017"
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
 
 volumes:
   mongo-data:
